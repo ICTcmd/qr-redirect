@@ -6,14 +6,22 @@
   <script src="redirects.js"></script>
 </head>
 <body>
-  <script>
-    const slug = window.location.pathname.split('/').pop();
-    const target = redirects[slug];
-    if (target) {
-      window.location.href = target;
-    } else {
-      document.body.innerHTML = `<h2>🚫 File not found</h2><p>No redirect available for <code>${slug}</code>.</p>`;
-    }
-  </script>
+<script>
+  const slug = window.location.pathname.split("/").pop();
+  fetch("https://ictcmd.infinityfreeapp.com/redirects.js")
+    .then(res => res.json())
+    .then(map => {
+      const target = map[slug];
+      if (target) {
+        window.location.replace(target);
+      } else {
+        document.body.innerHTML = "🚫 File not found";
+      }
+    })
+    .catch(() => {
+      document.body.innerHTML = "⚠️ Redirect service unavailable";
+    });
+</script>
+
 </body>
 </html>
