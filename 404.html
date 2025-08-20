@@ -8,7 +8,7 @@
 <body>
 <script>
   const slug = window.location.pathname.split("/").pop();
-  fetch("https://ictcmd.infinityfreeapp.com/redirects.js")
+  fetch("https://qrgeneratormax.rf.gd/redirects.js")
     .then(res => res.json())
     .then(map => {
       const target = map[slug];
@@ -22,6 +22,7 @@
       document.body.innerHTML = "⚠️ Redirect service unavailable";
     });
 </script>
+
 
 </body>
 </html>
