@@ -1,7 +1,5 @@
-<script src="redirects.js"></script>
-<script>
-  const slug = window.location.pathname.split('/').pop();
-  const target = redirects[slug];
-  if (target) window.location.href = target;
-  else document.body.innerHTML = `<h2>🚫 File not found</h2><p>No redirect available for <code>${slug}</code>.</p>`;
-</script>
+const redirects = {
+  "abc123": "https://your.infinityfreehost.com/uploads/abc123.png",
+  "xyz456": "https://your.infinityfreehost.com/uploads/xyz456.jpg"
+  // Add more entries here as needed
+};
