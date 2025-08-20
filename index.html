@@ -3,25 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Redirecting...</title>
-  <script>
-    const slug = window.location.pathname.split('/').pop();
-
-    // Map slugs to actual file URLs
-    const redirects = {
-      "abc123_1692529200": "https://your-infinityfree-site.com/uploads/abc123_1692529200.png",
-      "doc456_1692529300": "https://your-infinityfree-site.com/uploads/doc456_1692529300.pdf"
-      // Add more mappings here
-    };
-
-    const target = redirects[slug];
-    if (target) {
-      window.location.href = target;
-    } else {
-      document.body.innerHTML = `<h2>🚫 File not found</h2><p>No redirect available for <code>${slug}</code>.</p>`;
-    }
-  </script>
+  <script src="redirects.js"></script>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <script>
+    (function () {
+      const slug = window.location.pathname.split('/').pop();
+      if (redirects[slug]) {
+        window.location.href = redirects[slug];
+      } else {
+        document.body.innerHTML = `<h2>404: Redirect not found for "${slug}"</h2>`;
+      }
+    })();
+  </script>
 </body>
 </html>
