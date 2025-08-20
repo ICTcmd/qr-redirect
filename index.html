@@ -1,20 +1,27 @@
+<?php
+// Simple HTTP auth (optional)
+$user = 'admin'; $pass = 'ChangeMe';
+if (!isset($_SERVER['PHP_AUTH_USER'])
+  || $_SERVER['PHP_AUTH_USER'] !== $user
+  || $_SERVER['PHP_AUTH_PW']   !== $pass) {
+  header('WWW-Authenticate: Basic realm="QR Admin"');
+  header('HTTP/1.0 401 Unauthorized');
+  exit('Auth required');
+}
+?>
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
-  <script src="redirects.js"></script>
-</head>
+<head><meta charset="UTF-8"><title>QR Admin</title></head>
 <body>
-  <script>
-    (function () {
-      const slug = window.location.pathname.split('/').pop();
-      if (redirects[slug]) {
-        window.location.href = redirects[slug];
-      } else {
-        document.body.innerHTML = `<h2>404: Redirect not found for "${slug}"</h2>`;
-      }
-    })();
-  </script>
+  <h1>Upload & Create QR</h1>
+  <form method="post" action="save.php" enctype="multipart/form-data">
+    <label>Slug:<br>
+      <input name="slug" pattern="[A-Za-z0-9_-]+" required>
+    </label><br><br>
+    <label>Image:<br>
+      <input type="file" name="file" accept="image/*" required>
+    </label><br><br>
+    <button type="submit">Generate QR</button>
+  </form>
 </body>
 </html>
