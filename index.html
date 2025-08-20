@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta http-equiv="refresh" content="0;url=https://qrgeneratormax.rf.gd/upload_with_logo.php">
+  <meta charset="UTF-8">
   <title>Redirecting...</title>
+  <script>
+    const slug = window.location.pathname.split('/').pop();
+
+    // Map slugs to actual file URLs
+    const redirects = {
+      "abc123_1692529200": "https://your-infinityfree-site.com/uploads/abc123_1692529200.png",
+      "doc456_1692529300": "https://your-infinityfree-site.com/uploads/doc456_1692529300.pdf"
+      // Add more mappings here
+    };
+
+    const target = redirects[slug];
+    if (target) {
+      window.location.href = target;
+    } else {
+      document.body.innerHTML = `<h2>🚫 File not found</h2><p>No redirect available for <code>${slug}</code>.</p>`;
+    }
+  </script>
 </head>
 <body>
-  <p>If you're not redirected, <a href="https://qrgeneratormax.rf.gd/upload_with_logo.php">click here</a>.</p>
+  <p>Redirecting...</p>
 </body>
 </html>
